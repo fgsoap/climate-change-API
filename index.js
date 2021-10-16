@@ -29,8 +29,13 @@ newspapers.forEach(newspaper => {
             const html = response.data
             const $ = cheerio.load(html)
             $('a:contains("climate")', html).each(function () {
-                const title = $(this).text()
-                const url = $(this).attr("href")
+                const title = $(this).text().trim()
+                let url = ""
+                if (newspaper.address === "https://www.telegraph.co.uk/climate-change") {
+                    url = "https://www.telegraph.co.uk" + $(this).attr("href")
+                } else {
+                    url = $(this).attr("href")
+                }
 
                 articles.push({
                     title,
