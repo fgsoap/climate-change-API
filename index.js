@@ -12,14 +12,17 @@ const newspapers = [
     {
         name: "thetimes",
         address: "https://www.thetimes.co.uk/environment/climate-change",
+        base: "https://www.thetimes.co.uk"
     },
     {
         name: "guardian",
         address: "https://www.theguardian.com/environment/climate-crisis",
+        base: "https://www.theguardian.com"
     },
     {
         name: "telegraph",
         address: "https://www.telegraph.co.uk/climate-change",
+        base: "https://www.telegraph.co.uk"
     }
 ]
 
@@ -32,7 +35,7 @@ newspapers.forEach(newspaper => {
                 const title = $(this).text().trim()
                 let url = ""
                 if (newspaper.address === "https://www.telegraph.co.uk/climate-change") {
-                    url = "https://www.telegraph.co.uk" + $(this).attr("href")
+                    url = newspaper.base + $(this).attr("href")
                 } else {
                     url = $(this).attr("href")
                 }
@@ -40,7 +43,7 @@ newspapers.forEach(newspaper => {
                 articles.push({
                     title,
                     url,
-                    source: newspaper.address
+                    source: newspaper.name
                 })
 
             })
